@@ -2,29 +2,15 @@ package Leetcode306;
 
 public class Solution {
     public static void main(String[] args) {
-        String num = "112358";
-        System.out.println(new Solution().isAdditiveNumber(num));
+        String s = "112358";
+        System.out.println(new Solution().isAdditiveNumber(s));
     }
-    public boolean isAdditiveNumber(String num){
-        int n = num.length();
-        for(int i = 1; i < n; i++){
-            if(num.charAt(0) == '0') break;
-            long first = Long.parseLong(num.substring(0, i));
-            for(int j = i + 1; j < n; j++){
-                if(num.charAt(i) == '0' && j - i > 1) break;
-                long second = Long.parseLong(num.substring(i, j));
-                if(dfs(first, second, j, num)) return true;
-            }
+    public boolean isAdditiveNumber(String s){
+        if(s.length() < 3) return false;
+        for(int i = 2; i < s.length(); i++){
+            if((int)s.charAt(i) != (int)s.charAt(i - 1) + (int)s.charAt(i-2)) return false;
         }
-        return false;
+        return true;
     }
-    private boolean dfs(long first, long second, int start, String num){
-        if(start == num.length()) return true;
-        long sum = first + second;
-        String sumStr = String.valueOf(sum);
-        if(!num.startsWith(sumStr, start)){
-            return false;
-        }
-        return dfs(second,sum, start + sumStr.length(), num);
-    }
+
 }

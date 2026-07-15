@@ -1,0 +1,56 @@
+package Leetcode2196;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+class TreeNode{
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(){};
+    TreeNode(int val){
+        this.val = val;
+    }
+    TreeNode(int val, TreeNode left, TreeNode right){
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+
+}
+public class CreateBinaryTreeFromDescriptions {
+    public static void main(String[] args) {
+
+    }
+    static TreeNode createBinaryTree(int[][] descriptions){
+        Map<Integer, TreeNode> nodeMap = new HashMap<>();
+        Set<Integer> childrenSet = new HashSet<>();
+        for(int[] description : descriptions){
+            int parentValue = description[0];
+            int childValue = description[1];
+            int isLeft = description[2];
+            if(!nodeMap.containsKey(parentValue)){
+                nodeMap.put(parentValue, new TreeNode(parentValue));
+            }
+            if(!nodeMap.containsKey(childValue)){
+                nodeMap.put(childValue, new TreeNode(childValue));
+            }
+            TreeNode parentNode = nodeMap.get(parentValue);
+            TreeNode childNode = nodeMap.get(childValue);
+            if(isLeft == 1){
+                parentNode.left = childNode;
+            } else {
+                parentNode.right = childNode;
+            }
+            childrenSet.add(childValue);
+        }
+        for(Map.Entry<Integer, TreeNode> entry : nodeMap.entrySet()){
+            if(!childrenSet.contains(entry.getKey())){
+                return entry.getValue();
+            }
+        }
+        return null;
+    }
+}

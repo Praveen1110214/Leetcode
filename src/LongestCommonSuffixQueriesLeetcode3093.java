@@ -1,0 +1,58 @@
+import java.util.Arrays;
+
+class Trie{
+    private static final int INFINITY = 1 << 30;
+    private Trie[] children = new Trie[26];
+    private int minLength = INFINITY;
+    private int wordIndex = INFINITY;
+
+    public void insert(String word, int index){
+        Trie currentNode = this;
+        if(currentNode.minLength > word.length()){
+            currentNode.minLength = word.length();
+            currentNode.wordIndex = index;
+        }
+        for(int charPos = word.length() - 1; charPos >= 0; charPos--){
+            int charIndex = word.charAt(charPos) - 'a';
+            if(currentNode.children[charIndex] == null){
+                currentNode.children[charIndex] = new Trie();
+            }
+            currentNode = currentNode.children[charIndex];
+            if(currentNode.minLength > word.length()){
+                currentNode.minLength = word.length();
+                currentNode.wordIndex = index;
+            }
+        }
+    }
+
+    public int query(String word){
+        Trie currentNode = this;
+        for(int charPos = word.length() - 1; charPos >= 0; charPos--){
+            int charIndex = word.charAt(charPos) - 'a';
+            if(currentNode.children[charIndex] == null){
+                break;
+            }
+            currentNode = currentNode.children[charIndex];
+        }
+        return currentNode.wordIndex;
+    }
+}
+public class LongestCommonSuffixQueriesLeetcode3093 {
+    public static void main(String[] args) {
+        String[] wordsContainer = {"abcd","bcd","xbcd"};
+        String[] wordsQuery = {"cd","bcd","xyz"};
+        System.out.println(Arrays.toString(stringIndices(wordsContainer,wordsQuery)));
+    }
+    static int[] stringIndices(String[] wordsContainer, String[] wordsQuery){
+        Trie trie = new Trie();
+        for(int i = 0; i < wordsContainer.length; i++){
+            trie.insert(wordsContainer[i], i);
+        }
+        int queryCount = wordsQuery.length;
+        int[] result = new int[queryCount];
+        for(int i = 0; i < queryCount; i++){
+            result[i] = trie.query(wordsQuery[i]);
+        }
+        return result;
+    }
+}
