@@ -27,7 +27,7 @@ public class Solution {
             if(Integer.parseInt(segment) > 255) continue;
             path.add(segment);
             backTrack(s, index + len, parts + 1, path);
-            path.removeLast();
+            path.remove(path.size() - 1);
         }
     }
 

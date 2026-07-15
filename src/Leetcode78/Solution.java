@@ -22,6 +22,6 @@ public class Solution {
         backTrack(nums, index + 1, curr, result);
         curr.add(nums[index]);
         backTrack(nums, index + 1, curr, result);
-        curr.removeLast();
+        curr.remove(curr.size() - 1);
     }
 }

@@ -36,7 +36,7 @@ public class Solution {
                     queue.offer(node.right);
                 }
             }
-            result.addFirst(level);
+            result.add(0,level);
         }
         return result;
     }

@@ -24,7 +24,7 @@ public class Solution {
             }
             curr.add(s.substring(start, end + 1));
             backTrack(end + 1, s, curr);
-            curr.removeLast();
+            curr.remove(curr.size() - 1);
         }
     }
     private boolean isPalindrome(String s, int left, int right){

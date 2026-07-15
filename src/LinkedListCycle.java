@@ -1,11 +1,11 @@
 import java.util.List;
 
-class ListNode {
+class ListNodes {
     int val;
 
     ListNode next;
 
-    public ListNode(int x){
+    public ListNodes(int x){
         val = x;
         next = null;
     }

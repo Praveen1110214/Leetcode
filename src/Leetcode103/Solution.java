@@ -31,7 +31,7 @@ public class Solution {
                 TreeNode node = queue.poll();
                 if (isLeftToRight) level.add(node.val);
                 else {
-                    level.addFirst(node.val);
+                    level.add(0,node.val);
                 }
                 if(node.left != null) queue.offer(node.left);
                 if(node.right != null) queue.offer(node.right);

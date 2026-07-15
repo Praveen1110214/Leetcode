@@ -24,7 +24,7 @@ public class Solution {
     public TreeNode increasingBST(TreeNode root){
         List<Integer> list = new ArrayList<>();
         dfs(root, list);
-        TreeNode head = new TreeNode(list.getFirst());
+        TreeNode head = new TreeNode(list.get(0));
         TreeNode curr = head;
         for(int i = 1; i < list.size(); i++){
             curr.right = new TreeNode(list.get(i));

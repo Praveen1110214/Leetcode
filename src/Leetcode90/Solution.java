@@ -24,7 +24,7 @@ class Solution {
             }
             curr.add(nums[i]);
             backtrack(i + 1, nums, curr, result);
-            curr.removeLast();
+            curr.remove(curr.size() - 1);
         }
     }
 }

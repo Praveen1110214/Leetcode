@@ -25,7 +25,7 @@ public class Solution {
         for(int i = start; i <= 9; i++){
             curr.add(i);
             backTrack(i + 1, k, target - i, curr);
-            curr.removeLast();
+            curr.remove(curr.size() - 1);
         }
     }
 }

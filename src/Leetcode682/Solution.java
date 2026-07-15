@@ -17,7 +17,7 @@ public class Solution {
                 num *= 2;
                 stack.push(num);
             } else if(operation.equals("+")){
-                int sum = stack.getLast() + stack.get(stack.size() - 2);
+                int sum = stack.get(stack.size() - 1) + stack.get(stack.size() - 2);
                 stack.push(sum);
             } else stack.push(Integer.parseInt(operation));
 
