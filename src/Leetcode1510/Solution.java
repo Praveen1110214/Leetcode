@@ -1,0 +1,29 @@
+package Leetcode1510;
+
+public class Solution {
+    public static void main(String[] args) {
+        int n = 2;
+        System.out.println(new Solution().winnerSquareGame(n));
+    }
+    public Boolean[] memo;
+    public boolean winnerSquareGame(int n) {
+        memo = new Boolean[n + 1];
+        return canWin(n);
+    }
+    private boolean canWin(int remainingStones) {
+        if(remainingStones <= 0){
+            return false;
+        }
+        if(memo[remainingStones] != null) {
+            return memo[remainingStones];
+        }
+        for(int j = 1; j * j <= remainingStones; j++){
+            if(!canWin(remainingStones - j * j)) {
+                memo[remainingStones] = true;
+                return true;
+            }
+        }
+        memo[remainingStones] = false;
+        return false;
+    }
+}
